@@ -1,0 +1,28 @@
+{
+    "name": "toolbox",
+    "description": "toolbox",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background":{
+        "service_worker": "background.js"
+    },
+    "action":{
+        "default_popup":"popup.html",
+        "default_icon":{
+            "16":"./images/favicon.png",
+            "32":"./images/favicon.png",
+            "48":"./images/favicon.png",
+            "128":"./images/favicon.png"
+        }
+    },
+    "icons":{
+        "16":"./images/favicon.png",
+        "32":"./images/favicon.png",
+        "48":"./images/favicon.png",
+        "128":"./images/favicon.png"
+    },
+    "permissions":["storage","activeTab","scripting"],
+    "chrome_url_overrides":{
+        "newtab":"newtab.html"
+    }
+}
