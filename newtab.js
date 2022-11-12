@@ -1,13 +1,29 @@
-//window.location.replace("http://www.google.be");
+const cont = document.getElementById("content");
+const Affichage = document.createElement("div");
+let nameB;
+let personalisation;
+Affichage.id = "aff";
 
-let willSmithImages = [
-  "https://www.lovethispic.com/uploaded_images/80903-Funny-Will-Smith.jpg",
-  "https://media1.popsugar-assets.com/files/thumbor/BrT6JuS0boRe5dXrvkKQ4rzGNME/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2019/02/10/215/n/1922283/ad358e065c60f5ad56e7e8.61160339_/i/Funny-Tweets-About-Smith-Genie-Aladdin-Trailer.jpg",
-];
+chrome.storage.sync.get("perso", ({ perso }) => {
+  personalisation = perso;
+});
 
-console.log("hefiruhsfiuh");
-const imgs = document.getElementsByTagName("img");
-for (let i = 0; i < imgs.length; i++) {
-  imgs[i].src = willSmithImages[0];
-  imgs[i].srcset = willSmithImages[0];
-}
+chrome.storage.sync.get("nameButton", ({ nameButton }) => {
+  nameB = nameButton;
+  if (nameB === "citation") {
+    Affichage.innerHTML = "cit";
+    cont.appendChild(Affichage);
+  }
+  if (nameB === "anecdotes") {
+    Affichage.innerHTML = "anec";
+    cont.appendChild(Affichage);
+  }
+  if (nameB === "enigmes") {
+    Affichage.innerHTML = "enigmes";
+    cont.appendChild(Affichage);
+  }
+  if (nameB === "personalise") {
+    Affichage.innerHTML = personalisation;
+    cont.appendChild(Affichage);
+  }
+});
