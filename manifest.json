@@ -21,8 +21,16 @@
         "48":"./images/favicon.png",
         "128":"./images/favicon.png"
     },
-    "permissions":["storage","activeTab","scripting"],
-    "chrome_url_overrides":{
-        "newtab":"newtab.html"
-    }
+    "content_scripts":[
+        {
+            "matches":["<all_urls>","https://www.google.be/"],
+            "js":["newtab.js"],
+            "run_at": "document_idle",
+            "all_frames": true,
+            "match_about_blank": true
+        }
+
+    ],
+    "permissions":["storage","activeTab","scripting"]
+
 }

@@ -1,11 +1,21 @@
 const changeColor = document.getElementById("colorChange");
+const SavePerso = document.getElementById("savePerso");
 const buttonOptions = document.getElementById("buttonDiv");
+const textPerso = document.getElementById("perso");
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
+const buttonName = ["citation", "anecdotes", "enigmes", "personalise"];
 
 //get something from localStorage
 chrome.storage.sync.get("color", ({ color }) => {
   changeColor.style.backgroundColor = color;
+});
+
+chrome.storage.sync.get("nameButton", ({ nameButton }) => {
+  changeColor.innerHTML = nameButton;
+});
+chrome.storage.sync.get("perso", ({ perso }) => {
+  textPerso.value = perso;
 });
 
 function handleButtonClick(e) {
@@ -18,18 +28,23 @@ function handleButtonClick(e) {
   e.target.classList.add(selectedClassName);
   chrome.storage.sync.set({ color });
   changeColor.style.backgroundColor = color;
+
+  const nameButton = e.target.dataset.name;
+  chrome.storage.sync.set({ nameButton });
+  changeColor.innerHTML = nameButton;
 }
 
-function constructOptions(buttonColors) {
+function constructOptions(buttonColors, buttonName) {
   chrome.storage.sync.get("color", (data) => {
     const currentColor = data.color;
-
-    for (let buttonColor of buttonColors) {
+    for (let i = 0; i < 4; i++) {
       const button = document.createElement("button");
-      button.dataset.color = buttonColor;
-      button.style.backgroundColor = buttonColor;
+      button.dataset.color = buttonColors[i];
+      button.style.backgroundColor = buttonColors[i];
+      button.dataset.name = buttonName[i];
+      button.innerHTML = buttonName[i];
 
-      if (buttonColor === currentColor) {
+      if (buttonColors[i] === currentColor) {
         button.classList.add(selectedClassName);
       }
 
@@ -39,4 +54,10 @@ function constructOptions(buttonColors) {
   });
 }
 
-constructOptions(buttonColors);
+function handlePerso() {
+  let perso = textPerso.value;
+  chrome.storage.sync.set({ perso });
+}
+
+SavePerso.addEventListener("click", handlePerso);
+constructOptions(buttonColors, buttonName);
