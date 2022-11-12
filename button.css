@@ -1,5 +1,6 @@
 .container {
     width: 300px;
+    text-align: center;
 }
 button{
     width: 80px;
@@ -12,4 +13,9 @@ button{
 button.current{
     box-shadow: 0 0 0 2px white,
     0 0 0  4px black;
+}
+#savePerso{
+    width: 80px;
+    height: 30px;
+    margin: 10px;
 }
