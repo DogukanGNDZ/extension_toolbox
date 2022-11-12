@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="button.css">
 </head>
 <body>
-    <div class="container">
+    <input class="container">
         <button id="colorChange"></button>
         <div id="buttonDiv"></div>
         <div>
@@ -11,6 +11,24 @@
         </div>
         <textarea name="perso" id="perso" cols="37" rows="5"></textarea>
         <input type="button" id="savePerso" value="Enregistrer"></input>
+        <br/>
+        <h2>Images remplaceur</h2>
+        <h3>va remplacer toutes les images par des images predifinies</h3>
+        <br/>
+        <h3>Choix du types d images</h3>
+        <div>
+            <input type="button" id="will" value="Will Smith Images"></input>
+            <input type="button" id="cat" value="Cat Images"></input>
+            <input type="button" id="persoImage" value="Images perso"></input>
+        </div>
+        <h3>desactiver le remplacement d images</h3>
+        <div>
+            <input type="button" id="activeImage" value="Activer Images"></input>
+            <input type="button" id="desactiveImage" value="Desactiver Images"></input>
+        </div>
+        <h3>Images perso</h3>
+        <textarea name="lienImage" id="lienImage" cols="37" rows="5"></textarea>
+        <input type="button" id="saveLien" value="Enregistrer"></input>
     </div>
     <script src="popup.js"></script>
 </body>

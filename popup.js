@@ -2,6 +2,13 @@ const changeColor = document.getElementById("colorChange");
 const SavePerso = document.getElementById("savePerso");
 const buttonOptions = document.getElementById("buttonDiv");
 const textPerso = document.getElementById("perso");
+const activeImage = document.getElementById("activeImage");
+const desactivateImage = document.getElementById("desactiveImage");
+const will = document.getElementById("will");
+const cat = document.getElementById("cat");
+const newLien = document.getElementById("lienImage");
+const saveLien = document.getElementById("saveLien");
+const perso = document.getElementById("persoImage");
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
 const buttonName = ["citation", "anecdotes", "enigmes", "personalise"];
@@ -16,6 +23,13 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
 });
 chrome.storage.sync.get("perso", ({ perso }) => {
   textPerso.value = perso;
+});
+
+chrome.storage.sync.get("tablePerso", ({ tablePerso }) => {
+  tablePerso.forEach((element) => {
+    newLien.value += element;
+    newLien.value += ", ";
+  });
 });
 
 function handleButtonClick(e) {
@@ -59,5 +73,44 @@ function handlePerso() {
   chrome.storage.sync.set({ perso });
 }
 
+function handleActivate() {
+  let activateWill = true;
+  chrome.storage.sync.set({ activateWill });
+}
+function handleDesactivate() {
+  let activateWill = false;
+  chrome.storage.sync.set({ activateWill });
+}
+
+function handleWill() {
+  let setImage = "will";
+  chrome.storage.sync.set({ setImage });
+}
+
+function handleCat() {
+  let setImage = "cat";
+  chrome.storage.sync.set({ setImage });
+}
+
+function handlePerso() {
+  let setImage = "perso";
+  chrome.storage.sync.set({ setImage });
+}
+
+function handleNewLien() {
+  chrome.storage.sync.get("tablePerso", (data) => {
+    let tablePerso = data.tablePerso;
+    console.log(tablePerso);
+    tablePerso.push(newLien.value);
+    chrome.storage.sync.set({ tablePerso });
+  });
+}
+
 SavePerso.addEventListener("click", handlePerso);
+activeImage.addEventListener("click", handleActivate);
+desactivateImage.addEventListener("click", handleDesactivate);
+will.addEventListener("click", handleWill);
+cat.addEventListener("click", handleCat);
+saveLien.addEventListener("click", handleNewLien);
+perso.addEventListener("click", handlePerso);
 constructOptions(buttonColors, buttonName);

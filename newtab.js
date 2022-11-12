@@ -10,11 +10,4 @@ const imgs = document.getElementsByTagName("img");
 for (let i = 0; i < imgs.length; i++) {
   imgs[i].src = willSmithImages[0];
   imgs[i].srcset = willSmithImages[0];
-  const div = document.createElement("div");
-  div.innerHTML = "Pedro is Awesome";
-  imgs[i].appendChild(div);
 }
-
-const div = document.createElement("div");
-div.innerHTML = "Pedro is Awesome";
-document.body.appendChild(div);
