@@ -11,7 +11,7 @@ chrome.storage.sync.get("perso", ({ perso }) => {
 chrome.storage.sync.get("nameButton", ({ nameButton }) => {
   nameB = nameButton;
   if (nameB === "citation") {
-    Affichage.innerHTML = "cit";
+    Affichage.innerHTML = "d";
     cont.appendChild(Affichage);
   }
   if (nameB === "anecdotes") {
