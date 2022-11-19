@@ -10,6 +10,8 @@ const newLien = document.getElementById("lienImage");
 const saveLien = document.getElementById("saveLien");
 const perso = document.getElementById("persoImage");
 const elementImagesPerso = document.getElementById("imagesPersoDiv");
+const modifyLien = document.getElementById("modifyLien");
+const textConfirm = document.getElementById("textConfirm");
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
 const buttonName = ["citation", "anecdotes", "enigmes", "personalise"];
@@ -24,13 +26,6 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
 });
 chrome.storage.sync.get("perso", ({ perso }) => {
   textPerso.value = perso;
-});
-
-chrome.storage.sync.get("tablePerso", ({ tablePerso }) => {
-  tablePerso.forEach((element) => {
-    newLien.value += element;
-    newLien.value += ", ";
-  });
 });
 
 function handleButtonClick(e) {
@@ -74,14 +69,9 @@ function constructImages() {
     var i = 0;
     tablePerso.forEach((element) => {
       const textArea = document.createElement("textarea");
-      textArea.dataset.id = i;
-      textArea.dataset.cols = "37";
-      textArea.dataset.row = "5";
+      textArea.id = i;
       textArea.value += element;
-      const button = document.createElement("button");
-      button.dataset.id = i;
       elementImagesPerso.appendChild(textArea);
-      elementImagesPerso.appendChild(button);
       i++;
     });
   });
@@ -119,8 +109,27 @@ function handlePersoImage() {
 function handleNewLien() {
   chrome.storage.sync.get("tablePerso", (data) => {
     let tablePerso = data.tablePerso;
-    console.log(tablePerso);
     tablePerso.push(newLien.value);
+    chrome.storage.sync.set({ tablePerso });
+  });
+  const textValue = document.createElement("h3");
+  textValue.innerHTML = "Nouveau lien ajouter";
+  textConfirm.appendChild(textValue);
+}
+
+function handleModifiyLien() {
+  chrome.storage.sync.get("tablePerso", (data) => {
+    let tablePerso = data.tablePerso;
+    for (let i = 0; i < tablePerso.length; i++) {
+      const elementLien = document.getElementById(`${i}`);
+
+      if (tablePerso[i] != elementLien.value) {
+        tablePerso[i] = elementLien.value;
+        const textValue = document.createElement("h3");
+        textValue.innerHTML = "Image Modifier";
+        textConfirm.appendChild(textValue);
+      }
+    }
     chrome.storage.sync.set({ tablePerso });
   });
 }
@@ -132,5 +141,6 @@ will.addEventListener("click", handleWill);
 cat.addEventListener("click", handleCat);
 saveLien.addEventListener("click", handleNewLien);
 perso.addEventListener("click", handlePersoImage);
+modifyLien.addEventListener("click", handleModifiyLien);
 constructOptions(buttonColors, buttonName);
 constructImages();

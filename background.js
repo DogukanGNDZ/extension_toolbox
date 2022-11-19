@@ -3,10 +3,7 @@ let nameButton = "citation";
 let perso = "Mettez votre texte personalise ici !!";
 let setImage = "will";
 let activateWill = true;
-let tablePerso = [
-  "https://cdn.futura-sciences.com/sources/grenouille_arboricole_premiere_fluorescente.jpg",
-  "https://jardinage.lemonde.fr/images/dossiers/2016-07/grenouille-agile-105419.jpg",
-];
+let tablePerso = [];
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ color });
   chrome.storage.sync.set({ nameButton });
