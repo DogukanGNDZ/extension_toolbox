@@ -9,6 +9,7 @@ const cat = document.getElementById("cat");
 const newLien = document.getElementById("lienImage");
 const saveLien = document.getElementById("saveLien");
 const perso = document.getElementById("persoImage");
+const elementImagesPerso = document.getElementById("imagesPersoDiv");
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
 const buttonName = ["citation", "anecdotes", "enigmes", "personalise"];
