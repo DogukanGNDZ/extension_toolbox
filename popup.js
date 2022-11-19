@@ -9,6 +9,7 @@ const cat = document.getElementById("cat");
 const newLien = document.getElementById("lienImage");
 const saveLien = document.getElementById("saveLien");
 const perso = document.getElementById("persoImage");
+const elementImagesPerso = document.getElementById("imagesPersoDiv");
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
 const buttonName = ["citation", "anecdotes", "enigmes", "personalise"];
@@ -68,6 +69,24 @@ function constructOptions(buttonColors, buttonName) {
   });
 }
 
+function constructImages() {
+  chrome.storage.sync.get("tablePerso", ({ tablePerso }) => {
+    var i = 0;
+    tablePerso.forEach((element) => {
+      const textArea = document.createElement("textarea");
+      textArea.dataset.id = i;
+      textArea.dataset.cols = "37";
+      textArea.dataset.row = "5";
+      textArea.value += element;
+      const button = document.createElement("button");
+      button.dataset.id = i;
+      elementImagesPerso.appendChild(textArea);
+      elementImagesPerso.appendChild(button);
+      i++;
+    });
+  });
+}
+
 function handlePersoNewTab() {
   let perso = textPerso.value;
   chrome.storage.sync.set({ perso });
@@ -92,7 +111,7 @@ function handleCat() {
   chrome.storage.sync.set({ setImage });
 }
 
-function handlePerso() {
+function handlePersoImage() {
   let setImage = "perso";
   chrome.storage.sync.set({ setImage });
 }
@@ -112,5 +131,6 @@ desactivateImage.addEventListener("click", handleDesactivate);
 will.addEventListener("click", handleWill);
 cat.addEventListener("click", handleCat);
 saveLien.addEventListener("click", handleNewLien);
-perso.addEventListener("click", handlePerso);
+perso.addEventListener("click", handlePersoImage);
 constructOptions(buttonColors, buttonName);
+constructImages();
