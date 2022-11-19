@@ -68,7 +68,7 @@ function constructOptions(buttonColors, buttonName) {
   });
 }
 
-function handlePerso() {
+function handlePersoNewTab() {
   let perso = textPerso.value;
   chrome.storage.sync.set({ perso });
 }
@@ -106,7 +106,7 @@ function handleNewLien() {
   });
 }
 
-SavePerso.addEventListener("click", handlePerso);
+SavePerso.addEventListener("click", handlePersoNewTab);
 activeImage.addEventListener("click", handleActivate);
 desactivateImage.addEventListener("click", handleDesactivate);
 will.addEventListener("click", handleWill);

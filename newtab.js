@@ -23,7 +23,7 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
     cont.appendChild(Affichage);
   }
   if (nameB === "personalise") {
-    Affichage.innerHTML = personalisation;
+    Affichage.innerText = personalisation;
     cont.appendChild(Affichage);
   }
 });
