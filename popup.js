@@ -14,7 +14,7 @@ const modifyLien = document.getElementById("modifyLien");
 const textConfirm = document.getElementById("textConfirm");
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
-const buttonName = ["citation", "anecdotes", "enigmes", "personalise"];
+const buttonName = ["citation", "anecdotes", "énigmes", "personalisé"];
 
 //get something from localStorage
 chrome.storage.sync.get("color", ({ color }) => {
