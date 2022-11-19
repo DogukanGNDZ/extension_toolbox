@@ -2,7 +2,7 @@ let color = "#3AA757";
 let nameButton = "citation";
 let perso = "Mettez votre texte personalise ici !!";
 let setImage = "will";
-let activateWill = true;
+let activateWill = false;
 let tablePerso = [];
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ color });
