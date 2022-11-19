@@ -1,6 +1,7 @@
 body{
-    background-color: grey;
-    color: aliceblue;
+    background-color: rgb(196, 191, 191);
+    color: rgb(2, 26, 51);
+    font-size: large;
 }
 #aff{
     position: absolute;
