@@ -51,22 +51,31 @@ chrome.storage.sync.get("perso", ({ perso }) => {
 
 chrome.storage.sync.get("nameButton", ({ nameButton }) => {
   nameB = nameButton;
-  if (nameB === "citation") {
+  if (nameB === "Citation") {
     Affichage.innerText = citation[getRandomInt(9)];
     cont.appendChild(Affichage);
+    console.log("citation");
   }
-  if (nameB === "anecdotes") {
+  if (nameB === "Anecdotes") {
     Affichage.innerText = anecdotes[getRandomInt(9)];
     cont.appendChild(Affichage);
+    console.log("anecdotes");
   }
   if (nameB === "énigmes") {
     let ranNum = getRandomInt(5);
     Affichage.innerText =
       enigmes[ranNum] + " \n\n\n\nLa réponse est : " + enigmesResult[ranNum];
     cont.appendChild(Affichage);
+    console.log("enigmes");
   }
-  if (nameB === "personalisé") {
+  if (nameB === "Personalisé") {
     Affichage.innerText = personalisation;
     cont.appendChild(Affichage);
+    console.log("perso");
+  }
+  if (nameB === "Prochainement") {
+    Affichage.innerText = "Prochainement";
+    cont.appendChild(Affichage);
+    console.log("desac");
   }
 });
