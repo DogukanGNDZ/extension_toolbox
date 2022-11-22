@@ -56,19 +56,16 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
     cont.appendChild(Affichage);
   }
   if (nameB === "anecdotes") {
-    console.log("anec");
     Affichage.innerText = anecdotes[getRandomInt(9)];
     cont.appendChild(Affichage);
   }
   if (nameB === "énigmes") {
     let ranNum = getRandomInt(5);
-    console.log(ranNum);
     Affichage.innerText =
-      enigmes[ranNum] + " \n\n\n\nLa réponse est = " + enigmesResult[ranNum];
+      enigmes[ranNum] + " \n\n\n\nLa réponse est : " + enigmesResult[ranNum];
     cont.appendChild(Affichage);
   }
   if (nameB === "personalisé") {
-    console.log("perso");
     Affichage.innerText = personalisation;
     cont.appendChild(Affichage);
   }

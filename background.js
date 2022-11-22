@@ -1,5 +1,5 @@
 let color = "#3AA757";
-let nameButton = "citation";
+let nameButton = "Citation";
 let perso = "Mettez votre texte personalise ici !!";
 let setImage = "will";
 let activateWill = true;
