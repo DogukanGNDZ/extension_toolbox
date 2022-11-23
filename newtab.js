@@ -72,4 +72,24 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
     Affichage.innerText = personalisation;
     cont.appendChild(Affichage);
   }
+  if (nameB === "note") {
+    console.log("tu as choisis l'element note");
+    var texte = document.createElement("textarea");
+    var buttonSaveNote = document.createElement("button");
+    buttonSaveNote.innerHTML = "Add";
+    buttonSaveNote.id = "buttonSave"
+    texte.id = "textPerso";
+    chrome.storage.sync.get("notePerso", (data) => {
+      console.log(data.notePerso);
+      texte.innerHTML = data.notePerso;
+    })
+    cont.appendChild(texte);
+    cont.appendChild(buttonSaveNote);
+  }
+  const buttonSave = document.getElementById("buttonSave");
+  buttonSave.onclick = () => {
+    const notePerso = texte.value;
+    chrome.storage.sync.set({notePerso});
+  }
+  
 });
