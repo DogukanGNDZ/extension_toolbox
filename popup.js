@@ -13,8 +13,8 @@ const elementImagesPerso = document.getElementById("imagesPersoDiv");
 const modifyLien = document.getElementById("modifyLien");
 const textConfirm = document.getElementById("textConfirm");
 const selectedClassName = "current";
-const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
-const buttonName = ["citation", "anecdotes", "énigmes", "personalisé"];
+const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1","ff6944"];
+const buttonName = ["citation", "anecdotes", "énigmes", "personalisé", "note"];
 
 //get something from localStorage
 chrome.storage.sync.get("color", ({ color }) => {
@@ -47,7 +47,7 @@ function handleButtonClick(e) {
 function constructOptions(buttonColors, buttonName) {
   chrome.storage.sync.get("color", (data) => {
     const currentColor = data.color;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < buttonName.length; i++) {
       const button = document.createElement("button");
       button.dataset.color = buttonColors[i];
       button.style.backgroundColor = buttonColors[i];
