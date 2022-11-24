@@ -28,9 +28,16 @@
             "run_at": "document_end",
             "all_frames": true,
             "match_about_blank": true
+        },
+        {
+            "matches":["*://moodle.vinci.be/*"],
+            "css":[],
+            "js":["thy_shall_not_work.js"]
         }
-
     ],
-    "permissions":["storage","activeTab","scripting"]
+    "permissions":["storage","activeTab","scripting"],
+    "chrome_url_overrides":{
+        "newtab":"newtab.html"
+    }
 
 }

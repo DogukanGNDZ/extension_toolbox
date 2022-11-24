@@ -9,11 +9,14 @@ const cat = document.getElementById("cat");
 const newLien = document.getElementById("lienImage");
 const saveLien = document.getElementById("saveLien");
 const perso = document.getElementById("persoImage");
+const elementImagesPerso = document.getElementById("imagesPersoDiv");
+const modifyLien = document.getElementById("modifyLien");
+const textConfirm = document.getElementById("textConfirm");
 const drawActivate = document.getElementById("draw");
 const drawDesactivate = document.getElementById("drawDesactivate");
 const selectedClassName = "current";
-const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
-const buttonName = ["citation", "anecdotes", "enigmes", "personalise"];
+const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1","ff6944"];
+const buttonName = ["citation", "anecdotes", "énigmes", "personalisé", "note"];
 
 import draww from "./draw";
 //get something from localStorage
@@ -26,13 +29,6 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
 });
 chrome.storage.sync.get("perso", ({ perso }) => {
   textPerso.value = perso;
-});
-
-chrome.storage.sync.get("tablePerso", ({ tablePerso }) => {
-  tablePerso.forEach((element) => {
-    newLien.value += element;
-    newLien.value += ", ";
-  });
 });
 
 function handleButtonClick(e) {
@@ -54,7 +50,7 @@ function handleButtonClick(e) {
 function constructOptions(buttonColors, buttonName) {
   chrome.storage.sync.get("color", (data) => {
     const currentColor = data.color;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < buttonName.length; i++) {
       const button = document.createElement("button");
       button.dataset.color = buttonColors[i];
       button.style.backgroundColor = buttonColors[i];
@@ -71,7 +67,20 @@ function constructOptions(buttonColors, buttonName) {
   });
 }
 
-function handlePerso() {
+function constructImages() {
+  chrome.storage.sync.get("tablePerso", ({ tablePerso }) => {
+    var i = 0;
+    tablePerso.forEach((element) => {
+      const textArea = document.createElement("textarea");
+      textArea.id = i;
+      textArea.value += element;
+      elementImagesPerso.appendChild(textArea);
+      i++;
+    });
+  });
+}
+
+function handlePersoNewTab() {
   let perso = textPerso.value;
   chrome.storage.sync.set({ perso });
 }
@@ -95,7 +104,7 @@ function handleCat() {
   chrome.storage.sync.set({ setImage });
 }
 
-function handlePerso() {
+function handlePersoImage() {
   let setImage = "perso";
   chrome.storage.sync.set({ setImage });
 }
@@ -103,10 +112,40 @@ function handlePerso() {
 function handleNewLien() {
   chrome.storage.sync.get("tablePerso", (data) => {
     let tablePerso = data.tablePerso;
-    console.log(tablePerso);
     tablePerso.push(newLien.value);
     chrome.storage.sync.set({ tablePerso });
   });
+  const textValue = document.createElement("h3");
+  textValue.innerHTML = "Nouveau lien ajouter";
+  textConfirm.appendChild(textValue);
+}
+
+function handleModifiyLien() {
+  chrome.storage.sync.get("tablePerso", (data) => {
+    let tablePerso = data.tablePerso;
+    for (let i = 0; i < tablePerso.length; i++) {
+      const elementLien = document.getElementById(`${i}`);
+
+      if (tablePerso[i] != elementLien.value) {
+        tablePerso[i] = elementLien.value;
+        const textValue = document.createElement("h3");
+        textValue.innerHTML = "Image Modifier";
+        textConfirm.appendChild(textValue);
+      }
+    }
+    chrome.storage.sync.set({ tablePerso });
+  });
+}
+
+function handleActivateDraw() {
+  let activateDraw = true;
+  chrome.storage.sync.set({ activateDraw });
+  document.body.style.cursor = "crosshair";
+}
+function handleDesactivateDraw() {
+  let activateDraw = false;
+  chrome.storage.sync.set({ activateDraw });
+  document.body.style.cursor = "auto";
 }
 
 function handleActivateDraw() {
@@ -151,7 +190,7 @@ ctx.fillRect(100, 100, 100, 100)
 buttonOptions.appendChild(button_pencil);
 buttonOptions.appendChild(canvas);*/
 
-SavePerso.addEventListener("click", handlePerso);
+SavePerso.addEventListener("click", handlePersoNewTab);
 activeImage.addEventListener("click", handleActivate);
 desactivateImage.addEventListener("click", handleDesactivate);
 will.addEventListener("click", handleWill);
@@ -159,5 +198,7 @@ drawActivate.addEventListener("click", handleActivateDraw);
 drawDesactivate.addEventListener("click", handleDesactivateDraw);
 cat.addEventListener("click", handleCat);
 saveLien.addEventListener("click", handleNewLien);
-perso.addEventListener("click", handlePerso);
+perso.addEventListener("click", handlePersoImage);
+modifyLien.addEventListener("click", handleModifiyLien);
 constructOptions(buttonColors, buttonName);
+constructImages();
