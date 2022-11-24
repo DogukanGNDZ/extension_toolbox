@@ -10,9 +10,13 @@ const newLien = document.getElementById("lienImage");
 const saveLien = document.getElementById("saveLien");
 const activatesDes = document.getElementById("act/des");
 const perso = document.getElementById("persoImage");
+const drawActivate = document.getElementById("draw");
+const drawDesactivate = document.getElementById("drawDesactivate");
+const screenshot = document.getElementById("screenshot");
 const elementImagesPerso = document.getElementById("imagesPersoDiv");
 const modifyLien = document.getElementById("modifyLien");
 const textConfirm = document.getElementById("textConfirm");
+
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1", "ff6944"];
 const buttonName = ["Citation", "Anecdotes", "énigmes", "Personalisé", "note"];
@@ -137,13 +141,40 @@ function handleModifiyLien() {
   });
 }
 
+
+function handleActivateDraw() {
+  let activateDraw = true;
+  chrome.storage.sync.set({ activateDraw });
+  document.body.style.cursor = "crosshair";
+}
+function handleDesactivateDraw() {
+  let activateDraw = false;
+  chrome.storage.sync.set({ activateDraw });
+  document.body.style.cursor = "auto";
+}
+
+function handleScreenshot() {
+  chrome.tabs.captureVisibleTab((dataUrl) => {
+    chrome.downloads.download({
+      filename  : "download.jpg",
+      url : dataUrl
+    });
+  });
+}
+
+
+
 SavePerso.addEventListener("click", handlePersoNewTab);
 activeImage.addEventListener("click", handleActivate);
 desactivateImage.addEventListener("click", handleDesactivate);
 will.addEventListener("click", handleWill);
+drawActivate.addEventListener("click", handleActivateDraw);
+drawDesactivate.addEventListener("click", handleDesactivateDraw);
 cat.addEventListener("click", handleCat);
 saveLien.addEventListener("click", handleNewLien);
 perso.addEventListener("click", handlePersoImage);
 modifyLien.addEventListener("click", handleModifiyLien);
+
+screenshot.addEventListener("click", handleScreenshot);
 constructOptions(buttonColors, buttonName);
 constructImages();

@@ -105,3 +105,13 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
     chrome.storage.sync.set({ notePerso });
   };
 });
+console.log("yoaaa");
+chrome.storrage.sync.get("activateDraw", ({activateDraw}) => {
+  let state = activateDraw;
+  if (state === true) {
+    console.log("ACTIVATED"); 
+
+  } else {
+    console.log("DESACTIVATED");
+  }
+});
