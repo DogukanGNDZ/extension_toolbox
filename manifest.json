@@ -24,20 +24,21 @@
     "content_scripts":[
         {
             "matches":["<all_urls>","https://www.google.be/"],
-            "js":["image.js"],
-            "run_at": "document_idle",
+            "js":["image.js", "draw.js"],
+            "run_at": "document_end",
             "all_frames": true,
             "match_about_blank": true
         },
         {
-            "matches":["*://moodle.vinci.be/*"],
+            "matches":["<all_urls>"],
             "css":[],
             "js":["thy_shall_not_work.js"]
         }
     ],
-    "permissions":["storage","activeTab","scripting"],
+    "permissions":["storage","activeTab","scripting","downloads"],
     "chrome_url_overrides":{
         "newtab":"newtab.html"
     }
+    
 
 }
