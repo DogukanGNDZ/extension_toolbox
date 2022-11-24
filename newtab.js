@@ -45,6 +45,8 @@ let enigmesResult = [
   "Ton prénom",
 ];
 
+let jokes = ["C'est l'histoire d'un pingouin qui respire par les fesses"];
+
 chrome.storage.sync.get("perso", ({ perso }) => {
   personalisation = perso;
 });
@@ -55,26 +57,30 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
     Affichage.innerText = citation[getRandomInt(9)];
     cont.appendChild(Affichage);
     console.log("citation");
-  }
-  if (nameB === "Anecdotes") {
+  } else if (nameB === "Anecdotes") {
     Affichage.innerText = anecdotes[getRandomInt(9)];
     cont.appendChild(Affichage);
     console.log("anecdotes");
-  }
-  if (nameB === "énigmes") {
+  } else if (nameB === "énigmes") {
     let ranNum = getRandomInt(5);
-    Affichage.innerText =
-      enigmes[ranNum] + " \n\n\n\nLa réponse est : " + enigmesResult[ranNum];
+    const boutonReponse = document.createElement("button");
+    boutonReponse.innerHTML = "Voir réponse";
+    Affichage.innerText = enigmes[ranNum] + " \n\n\n\n";
+    Affichage.appendChild(boutonReponse);
     cont.appendChild(Affichage);
     console.log("enigmes");
-  }
-  if (nameB === "Personalisé") {
+    boutonReponse.addEventListener("click", handleResponse);
+
+    function handleResponse() {
+      Affichage.innerHTML += "\nLa réponse est : " + enigmesResult[ranNum];
+      console.log("ciciciciic");
+    }
+  } else if (nameB === "Personalisé") {
     Affichage.innerText = personalisation;
     cont.appendChild(Affichage);
     console.log("perso");
-  }
-  if (nameB === "Prochainement") {
-    Affichage.innerText = "Prochainement";
+  } else if (nameB === "Blagues") {
+    Affichage.innerText = "Prochainement...";
     cont.appendChild(Affichage);
     console.log("desac");
   }

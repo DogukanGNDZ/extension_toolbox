@@ -8,18 +8,19 @@ const will = document.getElementById("will");
 const cat = document.getElementById("cat");
 const newLien = document.getElementById("lienImage");
 const saveLien = document.getElementById("saveLien");
+const activatesDes = document.getElementById("act/des");
 const perso = document.getElementById("persoImage");
 const elementImagesPerso = document.getElementById("imagesPersoDiv");
 const modifyLien = document.getElementById("modifyLien");
 const textConfirm = document.getElementById("textConfirm");
 const selectedClassName = "current";
-const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1", "e8453c"];
+const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1", "#3AA524"];
 const buttonName = [
   "Citation",
   "Anecdotes",
   "énigmes",
   "Personalisé",
-  "Prochainement",
+  "Blagues",
 ];
 
 //get something from localStorage
@@ -91,10 +92,12 @@ function handlePersoNewTab() {
 function handleActivate() {
   let activateWill = true;
   chrome.storage.sync.set({ activateWill });
+  activatesDes.innerHTML = "Activé";
 }
 function handleDesactivate() {
   let activateWill = false;
   chrome.storage.sync.set({ activateWill });
+  activatesDes.innerHTML = "Désactivé";
 }
 
 function handleWill() {

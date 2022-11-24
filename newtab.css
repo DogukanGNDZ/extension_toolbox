@@ -1,10 +1,15 @@
 body{
-    background-color: rgb(196, 191, 191);
-    color: rgb(2, 26, 51);
+    background-image: url(images/fon5.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+    color: rgb(255, 255, 255);
     font-size: large;
 }
 #aff{
     position: absolute;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: x-large;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
