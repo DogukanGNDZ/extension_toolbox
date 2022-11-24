@@ -20,7 +20,7 @@ const textConfirm = document.getElementById("textConfirm");
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1", "ff6944"];
 const buttonName = ["Citation", "Anecdotes", "énigmes", "Personalisé", "note"];
-
+const html = document.getElementsByTagName("html");
 //get something from localStorage
 chrome.storage.sync.get("color", ({ color }) => {
   changeColor.style.backgroundColor = color;
@@ -141,7 +141,6 @@ function handleModifiyLien() {
   });
 }
 
-
 function handleActivateDraw() {
   let activateDraw = true;
   chrome.storage.sync.set({ activateDraw });
@@ -156,33 +155,29 @@ function handleDesactivateDraw() {
 function handleScreenshot() {
   chrome.tabs.captureVisibleTab((dataUrl) => {
     chrome.downloads.download({
-      filename  : "download.jpg",
-      url : dataUrl
+      filename: "download.jpg",
+      url: dataUrl,
     });
   });
 }
 
-
-
-
-let THY_SHALL_NOT_WORK = true
-let blocked_url = ["youtube.com","moodle.vinci.be"]
-chrome.storage.sync.set({blocked_url});
+let THY_SHALL_NOT_WORK = true;
+let blocked_url = ["youtube.com", "moodle.vinci.be"];
+chrome.storage.sync.set({ blocked_url });
 const buttonTSNW = document.getElementById("THYSHALLNOTWORK");
 function activeThyShallNotWork() {
-  THY_SHALL_NOT_WORK = !THY_SHALL_NOT_WORK
-  chrome.storage.sync.set({THY_SHALL_NOT_WORK})
-  console.log(THY_SHALL_NOT_WORK)
+  THY_SHALL_NOT_WORK = !THY_SHALL_NOT_WORK;
+  chrome.storage.sync.set({ THY_SHALL_NOT_WORK });
+  console.log(THY_SHALL_NOT_WORK);
 }
 buttonTSNW.addEventListener("click", activeThyShallNotWork);
 const buttonABU = document.getElementById("saveUrlToBlock");
 function addBlockedUrl() {
-  const url = document.getElementById("urlToBlock").value
-  blocked_url.push(url)
-  chrome.storage.sync.set({blocked_url})
+  const url = document.getElementById("urlToBlock").value;
+  blocked_url.push(url);
+  chrome.storage.sync.set({ blocked_url });
 }
-buttonABU.addEventListener("click", addBlockedUrl)
-
+buttonABU.addEventListener("click", addBlockedUrl);
 
 SavePerso.addEventListener("click", handlePersoNewTab);
 activeImage.addEventListener("click", handleActivate);
