@@ -1,4 +1,5 @@
 const cont = document.getElementById("content");
+const buttonSpace = document.getElementById("buttons");
 const Affichage = document.createElement("div");
 let nameB;
 let personalisation;
@@ -76,20 +77,45 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
     console.log("tu as choisis l'element note");
     var texte = document.createElement("textarea");
     var buttonSaveNote = document.createElement("button");
+    var buttonClearNote = document.createElement("button");
     buttonSaveNote.innerHTML = "Add";
-    buttonSaveNote.id = "buttonSave"
+    buttonClearNote.innerHTML = "Clear";
+    buttonSaveNote.className = "buttonSave";
+    buttonClearNote.className = "buttonClear";
+    buttonSaveNote.id = "buttonSave";
+    buttonClearNote.id = "buttonClear";
     texte.id = "textPerso";
     chrome.storage.sync.get("notePerso", (data) => {
       console.log(data.notePerso);
       texte.innerHTML = data.notePerso;
     })
     cont.appendChild(texte);
-    cont.appendChild(buttonSaveNote);
+    buttonSpace.appendChild(buttonSaveNote);
+    buttonSpace.appendChild(buttonClearNote);
   }
   const buttonSave = document.getElementById("buttonSave");
   buttonSave.onclick = () => {
     const notePerso = texte.value;
     chrome.storage.sync.set({notePerso});
   }
+  const buttonClear = document.getElementById("buttonClear");
+  buttonClear.onclick = () => {
+    const notePerso = 'Ajouter votre Texte ici...';
+    chrome.storage.sync.set({notePerso});
+    window.location.reload();
+    
+
+  }
   
+  
+});
+console.log("yoaaa");
+chrome.storrage.sync.get("activateDraw", ({activateDraw}) => {
+  let state = activateDraw;
+  if (state === true) {
+    console.log("ACTIVATED"); 
+
+  } else {
+    console.log("DESACTIVATED");
+  }
 });
