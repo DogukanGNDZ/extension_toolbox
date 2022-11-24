@@ -30,7 +30,7 @@
             "match_about_blank": true
         },
         {
-            "matches":["*://moodle.vinci.be/*"],
+            "matches":["<all_urls>"],
             "css":[],
             "js":["thy_shall_not_work.js"]
         }
