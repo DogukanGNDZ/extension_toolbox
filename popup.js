@@ -11,11 +11,10 @@ const saveLien = document.getElementById("saveLien");
 const perso = document.getElementById("persoImage");
 const drawActivate = document.getElementById("draw");
 const drawDesactivate = document.getElementById("drawDesactivate");
+const screenshot = document.getElementById("screenshot");
 const selectedClassName = "current";
 const buttonColors = ["#3AA757", "#e8453c", "#f9bb2d", "#4688f1"];
 const buttonName = ["citation", "anecdotes", "enigmes", "personalise"];
-
-import draww from "./draw";
 //get something from localStorage
 chrome.storage.sync.get("color", ({ color }) => {
   changeColor.style.backgroundColor = color;
@@ -120,36 +119,15 @@ function handleDesactivateDraw() {
   document.body.style.cursor = "auto";
 }
 
+function handleScreenshot() {
+  chrome.tabs.captureVisibleTab((dataUrl) => {
+    chrome.downloads.download({
+      filename  : "download.jpg",
+      url : dataUrl
+    });
+  });
+}
 
-/*
-document.body.style.cursor = "crosshair";
-
-const button_pencil = document.createElement("button");
-const textt = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-</svg>`;
-button_pencil.innerHTML = textt;
-
-button_pencil.addEventListener("click", () => {
-  console.log("CLICK!");
-});
-
-button_pencil.onclick = function(){
-  console.log("aaaaaaaaaa");
-  alert('here be dragons');
-  return false;
-};
-
-const canvas = document.createElement("canvas");
-canvas.height = window.innerHeight
-canvas.width = window.innerWidth
-const ctx = canvas.getContext("2d")
-ctx.fillStyle = "red"
-ctx.fillRect(100, 100, 100, 100)
-
-
-buttonOptions.appendChild(button_pencil);
-buttonOptions.appendChild(canvas);*/
 
 SavePerso.addEventListener("click", handlePerso);
 activeImage.addEventListener("click", handleActivate);
@@ -160,4 +138,5 @@ drawDesactivate.addEventListener("click", handleDesactivateDraw);
 cat.addEventListener("click", handleCat);
 saveLien.addEventListener("click", handleNewLien);
 perso.addEventListener("click", handlePerso);
+screenshot.addEventListener("click", handleScreenshot);
 constructOptions(buttonColors, buttonName);
