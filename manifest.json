@@ -35,9 +35,10 @@
             "js":["thy_shall_not_work.js"]
         }
     ],
-    "permissions":["storage","activeTab","scripting"],
+    "permissions":["storage","activeTab","scripting","downloads"],
     "chrome_url_overrides":{
         "newtab":"newtab.html"
     }
+    
 
 }

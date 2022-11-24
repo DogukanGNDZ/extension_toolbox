@@ -2,10 +2,12 @@ let color = "#3AA757";
 let nameButton = "citation";
 let perso = "Mettez votre texte personalise ici !!";
 let setImage = "will";
+
+let activateDraw = false;
 let activateWill = false;
 let tablePerso = [];
 let notePerso = "Bienvenue sur le tableau de bord des notes";
-let activateDraw = false;
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ color });
   chrome.storage.sync.set({ nameButton });
