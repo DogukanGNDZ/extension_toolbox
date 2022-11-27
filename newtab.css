@@ -10,3 +10,33 @@ body{
   transform: translate(-50%, -50%);
   
 }
+#textPerso{
+  background:transparent;
+  outline:none;
+  border:none;
+  width:100%;
+  height:80%;
+  font-size:20px;
+  color: rgb(26, 24, 24);
+}
+#buttonSave, #buttonClear{
+  position: sticky;
+  height:40%;
+  width: 37%;
+  border-radius: 8px;
+  margin: 5px;
+  padding : 5px;
+}
+.buttonClear {
+  background-color : rgb(231, 117, 117);
+}
+.buttonSave {
+  background-color : rgb(117, 231, 142);
+}
+#buttons{
+  position: sticky;
+  left: 55%;
+  
+  height : 25%;
+  width : 40%;
+}
