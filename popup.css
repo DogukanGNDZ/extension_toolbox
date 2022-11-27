@@ -1,0 +1,48 @@
+body{
+  background-image: url(images/fon4.png);
+    background-color: rgb(103, 161, 35);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+h2{
+    text-align: center;
+}
+h3{
+    text-align: center;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+
+    height: 30px;
+    outline: none;
+    margin: 10px;
+	color: black;
+	font: bold15px arial,sans-serif;
+	text-shadow: none;
+}
+#modifImg{
+    text-align: center;
+}
+
+/* scroll */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

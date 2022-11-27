@@ -1,10 +1,15 @@
 body{
-    background-color: rgb(196, 191, 191);
-    color: rgb(2, 26, 51);
+    background-image: url(images/fon5.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+    color: rgb(255, 255, 255);
     font-size: large;
 }
 #aff{
     position: absolute;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: x-large;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -19,7 +24,32 @@ body{
   font-size:20px;
   color: rgb(26, 24, 24);
 }
-#buttonSave{
-  height:10%;
-  width: 15%;
+#buttonSave, #buttonClear{
+  position: sticky;
+  height:40%;
+  width: 37%;
+  border-radius: 8px;
+  margin: 5px;
+  padding : 5px;
+}
+.buttonClear {
+  background-color : rgb(231, 117, 117);
+}
+.buttonSave {
+  background-color : rgb(117, 231, 142);
+}
+#buttons{
+  position: sticky;
+  left: 55%;
+  
+  height : 25%;
+  width : 40%;
+}
+button{
+  width: 80px;
+  height: 30px;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  margin: 10px;
 }
