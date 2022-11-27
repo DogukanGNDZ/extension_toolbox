@@ -16,9 +16,5 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ setImage });
   chrome.storage.sync.set({ tablePerso });
   chrome.storage.sync.set({ notePerso });
-  chrome.storage.sync.set({ activateDraw});
-  console.log(activateWill);
-  console.log(color);
-  console.log(nameButton);
-  console.log(notePerso);
+  chrome.storage.sync.set({ activateDraw });
 });
