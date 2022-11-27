@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="button.css">
+<link rel="stylesheet" href="popup.css">
 </head> 
     <div class="container">
         <button id="colorChange"></button>
@@ -17,26 +18,29 @@
         <input type="button" id="draw" value="Draw"></input>
         <input type="button" id="drawDesactivate" value="Desactivate Draw"></input>
         <input type="button" id="screenshot" value="Take a screenshot"></input>
-        <h2>Images remplaceur</h2>
-        <h3>va remplacer toutes les images par des images predifinies</h3>
+        <h2>Remplaceur d'images 3000</h2>
+        <h3>Cette fonctionnalités permet de changer l'ensembles des images.</h3>
         <br/>
-        <h3>Choix du types d images</h3>
+        <h3>Choix d'images :</h3>
         <div>
             <input type="button" id="will" value="Will Smith Images"></input>
             <input type="button" id="cat" value="Cat Images"></input>
-            <input type="button" id="persoImage" value="Images perso"></input>
+            <input type="button" id="persoImage" value="Images Personalisé"></input>
         </div>
-        <h3>desactiver le remplacement d images</h3>
+        <h3>Désactiver/Activer le remplacement d'images</h3>
+        <p id="act/des"></p>
         <div>
             <input type="button" id="activeImage" value="Activer Images"></input>
             <input type="button" id="desactiveImage" value="Desactiver Images"></input>
         </div>
         <h3>Images perso</h3>
-        <div id="imagesPersoDiv"></div>
-        <textarea name="lienImage" id="lienImage" ></textarea><br/>
-        <input type="button" id="saveLien" value="Enregistrer"></input>
-        <input type="button" id="modifyLien" value="Modifier"></input>
-        <div id="textConfirm"></div>
+        <div id="modifImg">
+            <div id="imagesPersoDiv"></div>
+            <textarea name="lienImage" id="lienImage" ></textarea><br/>
+            <input type="button" id="saveLien" value="Enregistrer"></input>
+            <input type="button" id="modifyLien" value="Modifier"></input>
+            <div id="textConfirm"></div>
+        </div>
         <div>
             <h3>Thy Shall Not Work</h3>
             <input type="button" id="THYSHALLNOTWORK" value="Activate"><br/>
@@ -44,9 +48,9 @@
             <input type="button" id="saveUrlToBlock" value="Enregistrer"/>
         </div>
     </div>
+    <script src="ImagesHandlerPopup.js"></script>
     <script src="popup.js"></script>
 </body>
 <footer>
-    <div> hello test</div>
 </footer>
 </html>

@@ -46,36 +46,49 @@ let enigmesResult = [
   "Ton prénom",
 ];
 
+let jokes = ["C'est l'histoire d'un pingouin qui respire par les fesses"];
+
 chrome.storage.sync.get("perso", ({ perso }) => {
   personalisation = perso;
 });
 
 chrome.storage.sync.get("nameButton", ({ nameButton }) => {
   nameB = nameButton;
-  if (nameB === "citation") {
+  if (nameB === "Citation") {
     Affichage.innerText = citation[getRandomInt(9)];
     cont.appendChild(Affichage);
-  }
-  if (nameB === "anecdotes") {
-    console.log("anec");
+    console.log("citation");
+  } else if (nameB === "Anecdotes") {
     Affichage.innerText = anecdotes[getRandomInt(9)];
     cont.appendChild(Affichage);
-  }
-  if (nameB === "énigmes") {
+    console.log("anecdotes");
+  } else if (nameB === "énigmes") {
     let ranNum = getRandomInt(5);
-    console.log(ranNum);
-    Affichage.innerText =
-      enigmes[ranNum] + " \n\n\n\nLa réponse est = " + enigmesResult[ranNum];
+    const boutonReponse = document.createElement("button");
+    boutonReponse.innerHTML = "Voir réponse";
+    Affichage.innerText = enigmes[ranNum] + " \n\n\n\n";
+    Affichage.appendChild(boutonReponse);
     cont.appendChild(Affichage);
-  }
-  if (nameB === "personalisé") {
-    console.log("perso");
+    console.log("enigmes");
+    boutonReponse.addEventListener("click", handleResponse);
+
+    function handleResponse() {
+      Affichage.innerHTML += "\nLa réponse est : " + enigmesResult[ranNum];
+      console.log("ciciciciic");
+    }
+  } else if (nameB === "Personalisé") {
     Affichage.innerText = personalisation;
     cont.appendChild(Affichage);
+    console.log("perso");
+  } else if (nameB === "Blagues") {
+    Affichage.innerText = "Prochainement...";
+    cont.appendChild(Affichage);
+    console.log("desac");
   }
   if (nameB === "note") {
     console.log("tu as choisis l'element note");
     var texte = document.createElement("textarea");
+    texte.style.color = "#FFFFFF";
     var buttonSaveNote = document.createElement("button");
     var buttonClearNote = document.createElement("button");
     buttonSaveNote.innerHTML = "Add";
@@ -88,7 +101,7 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
     chrome.storage.sync.get("notePerso", (data) => {
       console.log(data.notePerso);
       texte.innerHTML = data.notePerso;
-    })
+    });
     cont.appendChild(texte);
     buttonSpace.appendChild(buttonSaveNote);
     buttonSpace.appendChild(buttonClearNote);
@@ -96,25 +109,20 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
   const buttonSave = document.getElementById("buttonSave");
   buttonSave.onclick = () => {
     const notePerso = texte.value;
-    chrome.storage.sync.set({notePerso});
-  }
+    chrome.storage.sync.set({ notePerso });
+  };
   const buttonClear = document.getElementById("buttonClear");
   buttonClear.onclick = () => {
-    const notePerso = 'Ajouter votre Texte ici...';
-    chrome.storage.sync.set({notePerso});
+    const notePerso = "Ajouter votre Texte ici...";
+    chrome.storage.sync.set({ notePerso });
     window.location.reload();
-    
-
-  }
-  
-  
+  };
 });
 console.log("yoaaa");
-chrome.storrage.sync.get("activateDraw", ({activateDraw}) => {
+chrome.storrage.sync.get("activateDraw", ({ activateDraw }) => {
   let state = activateDraw;
   if (state === true) {
-    console.log("ACTIVATED"); 
-
+    console.log("ACTIVATED");
   } else {
     console.log("DESACTIVATED");
   }
