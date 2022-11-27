@@ -118,12 +118,3 @@ chrome.storage.sync.get("nameButton", ({ nameButton }) => {
     window.location.reload();
   };
 });
-console.log("yoaaa");
-chrome.storrage.sync.get("activateDraw", ({ activateDraw }) => {
-  let state = activateDraw;
-  if (state === true) {
-    console.log("ACTIVATED");
-  } else {
-    console.log("DESACTIVATED");
-  }
-});
